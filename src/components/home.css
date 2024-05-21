@@ -2,16 +2,15 @@
     box-sizing:border-box;
 }
 .home {
-  position: absolute;
-  left: 0;
-  right: 0;
+  min-width: 300px;
   height: 100vh;
   background-color: rgba(160, 192, 214, 0.8);
 }
 .home-image {
-  background-image: url("/Users/this_is_mjk/Projects/Learning/secy-recruit24/app-frontend/public/slide2.png");
+  background-image: url("./slide2.png");
   background-size: cover;
   background-position: center;
+  min-width: 300px;
   width: 100%;
   height: 40%; /* Adjust height as needed */
 }
@@ -27,7 +26,7 @@
   height: 100%;
 }
 .heading {
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: gray;
   margin: 2% auto;
   text-align: center;
@@ -38,14 +37,15 @@
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
-  width: 600px;
+  width: fit-content;
+  min-width: 300px;
   margin: 50px auto;
   justify-content: center;
   align-items: center;
   border: 1px solid white;
   border-radius: 10px;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
-  padding-bottom: 50px;
+  padding: 10px 10px 50px;
 }
 .form-element {
   font-size: 1rem;
