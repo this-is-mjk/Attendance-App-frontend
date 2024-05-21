@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import WebcamCapture from './components/webcam';
 import Home from './components/home';
 
 function App() {
@@ -8,7 +7,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/webcam" element={<WebcamCapture />} />
       </Routes>
     </BrowserRouter>
   );

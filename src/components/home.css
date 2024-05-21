@@ -3,7 +3,6 @@
 }
 .home {
   min-width: 300px;
-  height: 100vh;
   background-color: rgba(160, 192, 214, 0.8);
 }
 .home-image {
@@ -12,7 +11,9 @@
   background-position: center;
   min-width: 300px;
   width: 100%;
-  height: 40%; /* Adjust height as needed */
+  height: 40%;
+  min-height: 300px; 
+
 }
 .clock {
   font-size: 4rem;
@@ -21,7 +22,7 @@
 }
 .flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 100%;
 }
@@ -53,4 +54,11 @@
   margin: 5px auto;
   width: 80%;
   text-align: center;
+}
+.webcam {
+  border-radius: 20px;
+  margin: 10px 20px;
+  width: 80%;
+  height: 80%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
