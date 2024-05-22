@@ -2,7 +2,6 @@
     box-sizing:border-box;
 }
 .home {
-  min-width: 300px;
   background-color: rgba(160, 192, 214, 0.8);
 }
 .home-image {
@@ -15,16 +14,12 @@
   min-height: 300px; 
 
 }
-.clock {
-  font-size: 4rem;
-  margin: 0.5em;
-  color: whitesmoke;
-}
 .flex {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
+  flex-direction: row;
 }
 .heading {
   font-size: 2rem;
@@ -38,15 +33,14 @@
   display: flex;
   flex-direction: column;
   background-color: whitesmoke;
-  width: 500px;
-  min-width: 300px;
-  margin: 50px auto;
+  width: 400px;
+  margin: 50px 10px;
   justify-content: center;
   align-items: center;
   border: 1px solid white;
   border-radius: 10px;
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
-  padding: 10px 0 50px;
+  padding: 10px 0 10px;
 }
 .form-element {
   font-size: 1rem;
@@ -58,7 +52,16 @@
 .webcam {
   border-radius: 20px;
   margin: 10px 20px;
-  width: 80%;
+  width: 90%;
+  min-width: 300px;
   height: 80%;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+}
+@media screen and (max-width: 800px) {
+  .flex {
+    flex-direction: column;
+  }
+  .webcam {
+    margin: 20px auto;
+  }
 }
