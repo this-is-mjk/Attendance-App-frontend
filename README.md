@@ -18,6 +18,10 @@ refer the README in the backend for better understanding the backend implementat
 2. organise the files and fucntions in a better way.
 3. understand the concepts of useEffect, hooks, ects in deep, currently i face a bit issue in this topic
 4. Reduce copy pasting, increase typing you myself even when i just following the tutorial online, or only online resource.
+5. I was not able to deploy the project completely 
+   backend was not deployed
+   fronted is on vercel :- https://attendance-app-seven.vercel.app
+
 
 ### Endpoints
 
