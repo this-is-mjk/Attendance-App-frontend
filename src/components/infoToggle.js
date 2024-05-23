@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { List } from '@mui/material';
 
 const InfoToggle = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -18,6 +17,7 @@ const InfoToggle = () => {
       {isVisible && (
         <div style={{ border: '1px solid #ccc', paddingRight: '5px', marginTop: '5px', fontStyle: "italic", fontSize: "15px", color: "red"}}>
           <ul>
+            <li>Make sur good lighting on your face</li>
             <li>Enter id and click mark attendance to mark present</li>
             <li>Enter id and login to check yout attendance report</li>
             <li>Ask Admin to register you if you are not registered</li>

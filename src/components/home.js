@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import Alert from "@mui/material/Alert";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 import "./home.css";
 import InfoToggle from "./infoToggle";
 import axios from "axios";
@@ -7,9 +10,13 @@ import Webcam from "react-webcam";
 
 const Home = () => {
   const [rollNumber, setRollNumber] = useState("");
-  const [hasTyped, setHasTyped] = useState(false); // New state to track whether the user has typed anything
+  const [hasTyped, setHasTyped] = useState(false);
   const webcamRef = useRef(null);
   const [hasCameraAccess, setHasCameraAccess] = useState(false);
+  const [alert, setAlert] = useState(false);
+  const [alertContent, setAlertContent] = useState("");
+  const [alertType, setAlertType] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const requestCameraPermission = async () => {
@@ -24,25 +31,17 @@ const Home = () => {
 
     requestCameraPermission();
   }, []);
-  // const [image, setImage] = useState(null);
   const handleChange = (event) => {
     setRollNumber(event.target.value);
     setHasTyped(true); // Update state to indicate that the user has typed something
   };
-  // const capture = () => {
-  //   const image = webcamRef.current.getScreenshot();
-  //   setImage(image);
-  // };
-
   const capture = async () => {
     return new Promise((resolve) => {
       const screenshot = webcamRef.current.getScreenshot();
-      // setImage(screenshot);
       resolve(screenshot);
     });
   };
-
-  function dataURItoBlob(dataURI) {
+  const dataURItoBlob = (dataURI) => {
     // Split the data URI into parts
     const parts = dataURI.split(",");
     const byteString = atob(parts[1]);
@@ -58,46 +57,100 @@ const Home = () => {
     }
     // Create and return a new Blob object
     return new Blob([arrayBuffer], { type: mimeString });
-  }
+  };
   const createFormData = (image) => {
     const formData = new FormData();
     formData.set("user_id", rollNumber);
     formData.set("image", dataURItoBlob(image));
     return formData;
   };
-  const sendRequest = async (formData, url) => {
+  const sendRequest = async (method, formData, url) => {
+    setLoading(true);
     axios({
-      method: "post",
+      method: method,
       url: url,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     })
       .then((response) => {
-        console.log("Response from server:", response);
+        if (response.status === 200) {
+          setAlertContent(response.data.status);
+          setAlert(true);
+          setTimeout(() => {
+            setAlert(false);
+          }, 3000);
+          setAlertType("success");
+        }
       })
       .catch((error) => {
-        console.error("Error sending request:", error);
+        setAlertContent(error.response.data.status);
+        setAlert(true);
+        setTimeout(() => {
+          setAlert(false);
+        }, 3000);
+        setAlertType("error");
+      })
+      .finally(() => {
+        setLoading(false);
       });
   };
   const login = async () => {
     const screenshot = await capture();
     const formData = createFormData(screenshot);
-    // sendRequest(formData, "http://localhost:5000/mark-attendence");
-    await sendRequest(formData, "http://localh.st:5000/login");
-    // console.log("Login");
+    await sendRequest("POST", formData, "http://localh.st:5000/login");
   };
   const markAttendance = async () => {
     const screenshot = await capture();
     const formData = createFormData(screenshot);
-    // sendRequest(formData, "http://localhost:5000/mark-attendence");
-    await sendRequest(formData, "http://localh.st:5000/mark-attendence");
+    await sendRequest(
+      "POST",
+      formData,
+      "http://localh.st:5000/mark-attendence"
+    );
   };
+  if (loading) {
+    return (
+      <div
+        style={{
+          margin: "auto",
+          height: "100vh",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "white",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <p style={{ fontStyle: "italic", color: "green" }}>
+            Please wait, while we fetch your details!
+          </p>
+          <CircularProgress />
+        </Box>
+      </div>
+    );
+  }
   return (
     <div className="home">
       <div className="home-image" />
+      <div>
+        {alert ? (
+          <Alert variant="filled" severity={alertType}>
+            {alertContent}
+          </Alert>
+        ) : (
+          <></>
+        )}
+      </div>
       <div className="flex">
-        <div style={{ margin: "0 auto", width: "50%" }}>
-        {hasCameraAccess ? (
+        <div>
+          {hasCameraAccess ? (
             <Webcam
               className="webcam"
               audio={false}
