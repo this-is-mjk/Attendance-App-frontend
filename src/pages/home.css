@@ -45,7 +45,7 @@ body {
   box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
   padding: 10px 0 10px;
 }
-.form-element {
+.btn-input {
   font-size: 1rem;
   padding: 0.5rem;
   margin: 5px auto;
@@ -58,7 +58,7 @@ body {
   width: 95%;
   min-width: 400px;
   height: 80%;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.5);
 }
 @media screen and (max-width: 800px) {
   .flex {
