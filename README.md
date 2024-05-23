@@ -1,70 +1,76 @@
-# Getting Started with Create React App
+sorry but react code is a bit messy, and not comment out properly, i didn't had much left before the deadline
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### IITK Attendence App
 
-## Available Scripts
+React-based web application for managing student attendance. It includes features for logging in, marking attendance, adding students, and retrieving attendance records, all features using a face-recognition by python with flask backend
 
-In the project directory, you can run:
+Refer Demo:- https://drive.google.com/file/d/1dHEqofvBiVSwp0DsM_fATmrwoBwefYhS/view?usp=sharing for how to use
 
-### `npm start`
+frontend:-https://github.com/this-is-mjk/Attendance-App.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+backend:- https://github.com/this-is-mjk/Attendance-app-backend.git
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+refer the README in the backend for better understanding the backend implementation
 
-### `npm test`
+### Scope of improvement
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. increase the readablity
+2. organise the files and fucntions in a better way.
+3. understand the concepts of useEffect, hooks, ects in deep, currently i face a bit issue in this topic
+4. Reduce copy pasting, increase typing you myself even when i just following the tutorial online, or only online resource.
 
-### `npm run build`
+### Endpoints
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+POST /login - Login using roll number and webcam image.
+POST /mark-attendence - Mark attendance using roll number and webcam image.
+POST /add-student - Add a new student using roll number and webcam image.
+POST /get-attendence - Get attendance data for a specific roll number.
+GET /mark-absent-all - Mark all other students as absent for the day.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. React
+2. Axios
+3. Material-UI
+4. js-cookie <!--  not as such as the JWT token is not working properly -->
 
-### `npm run eject`
+## Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Home.js
+   main component, handles the application's logic and renders the appropriate UI elements based on the user's state (logged in, admin, etc.).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. alert.js
+   Displays alert messages to the user based on the response recieved form server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. attendenceTable.js
+   Renders a table with attendance data recieved
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. camera.js
+   Handles the webcam functionality for showing the webcam image on the page
 
-## Learn More
+5. inputID.js
+   Input field component for entering the roll number.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+6. request.js
+   Contains functions for sending HTTP requests to the backend server with fixed parameters
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+7. createFormData.js
+   function to create FormData object from the roll number and webcam image, to send in the request
 
-### Code Splitting
+8. requestCameraPermission.js
+   Requests camera access permissions if the browser do not provide the permission
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+9. infoToggle.js
+   toggling additional information on the UI, just for looks and info 😀
 
-### Analyzing the Bundle Size
+10. loadScreen.js
+    Loading screen component displayed during data fetching.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Backend Integration
 
-### Making a Progressive Web App
+http://localh.st:5000 for CORS issue solution, clone the backend repo and run the code
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm start for this repo
+python app.py for backend,
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ensure to insatll all the requirements.
