@@ -6,7 +6,7 @@ React-based web application for managing student attendance. It includes feature
 
 Refer Demo:- https://drive.google.com/file/d/1dHEqofvBiVSwp0DsM_fATmrwoBwefYhS/view?usp=sharing for how to use
 
-frontend:-https://github.com/this-is-mjk/Attendance-App.git
+frontend:-https://github.com/this-is-mjk/Attendance-App-frontend.git
 
 backend:- https://github.com/this-is-mjk/Attendance-app-backend.git
 
